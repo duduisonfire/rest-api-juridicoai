@@ -37,6 +37,7 @@ services:
       DB_PASSWORD: godness2k
       DB_NAME: api
       DB_HOST: maria-db
+      JWT_SECRET: 'alakdjaapdoiap[odisa.kjal;kdj;alkdd@]'
 
     networks:
       - default

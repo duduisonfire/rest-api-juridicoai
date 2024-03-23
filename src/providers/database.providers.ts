@@ -1,4 +1,4 @@
-import { Entities } from 'src/model/entitiesList';
+import { Entities } from 'src/model/entities.list';
 import { DataSource } from 'typeorm';
 
 export const databaseProviders = [
