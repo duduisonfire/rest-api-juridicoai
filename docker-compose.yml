@@ -1,0 +1,45 @@
+networks:
+  default: {}
+
+services:
+  maria-db:
+    container_name: maria-db
+    image: mariadb
+
+    environment:
+      MARIADB_ROOT_PASSWORD: godness2k
+      MYSQL_DATABASE: api
+      MYSQL_USER: duduisonfire
+      MYSQL_PASSWORD: godness2k
+
+    volumes:
+      - data:/var/lib/mysql
+
+    ports:
+      - "3306:3306"
+    
+    networks:
+      - default
+
+  nestjs-app:
+    build: .
+    container_name: nestjs-app
+    depends_on:
+      - maria-db
+
+    restart: on-failure
+    
+    ports:
+      - 3000:3000
+
+    environment:
+      DB_USER: root
+      DB_PASSWORD: godness2k
+      DB_NAME: api
+      DB_HOST: maria-db
+
+    networks:
+      - default
+
+volumes:
+    data:
