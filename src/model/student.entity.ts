@@ -1,18 +1,21 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class Student {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('string', { length: 500, unique: true })
-  nickname: string;
-
-  @Column('string')
+  @Column({ length: 500 })
   name: string;
 
+  @Column('int')
+  age: number;
+
   @Column('text')
-  password: string;
+  school: string;
+
+  @Column('text')
+  class: string;
 
   @Column('text', { unique: true })
   email: string;

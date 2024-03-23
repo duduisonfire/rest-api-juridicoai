@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import LoginDTO from 'src/DTO/LoginDTO';
 import UserDTO from 'src/DTO/UserDTO';
 import { UserService } from 'src/services/user.service';
 
@@ -6,13 +7,13 @@ import { UserService } from 'src/services/user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('api/user')
-  async getAllUsers() {
-    return await this.userService.findAll();
+  @Get('api/student')
+  async login(@Body() login: LoginDTO) {
+    return await this.userService.find(login);
   }
 
-  @Post('api/user')
-  async saveAllUsers(@Body() users: UserDTO[]) {
-    return await this.userService.addAll(users);
+  @Post('api/students')
+  async register(@Body() user: UserDTO) {
+    return await this.userService.register(user);
   }
 }

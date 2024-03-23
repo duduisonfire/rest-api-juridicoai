@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import UserDTO from 'src/DTO/UserDTO';
 import { User } from 'src/model/user.entity';
 import { Repository } from 'typeorm';
+import UserDTO from 'src/DTO/UserDTO';
+import LoginDTO from 'src/DTO/LoginDTO';
 
 @Injectable()
 export class UserService {
@@ -10,13 +11,11 @@ export class UserService {
     private userRepository: Repository<User>,
   ) {}
 
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
+  async find(login: LoginDTO): Promise<User> {
+    return this.userRepository.findOneBy({ email: login.email });
   }
 
-  async addAll(users: UserDTO[]) {
-    users.forEach((user) => {
-      this.userRepository.save(user);
-    });
+  async register(user: UserDTO) {
+    this.userRepository.save(user);
   }
 }

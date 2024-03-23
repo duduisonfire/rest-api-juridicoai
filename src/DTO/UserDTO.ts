@@ -1,7 +1,6 @@
 export default class UserDTO {
+  nickname: string;
   name: string;
-  age: number;
-  school: string;
-  class: string;
+  password: string;
   email: string;
 }
